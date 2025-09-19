@@ -1,0 +1,83 @@
+# Student Grades Management System
+''' Student Grades: Write a program that stores the grades of 3 students for 4 subjects. Use a 2D list to store the grades. For each student, calculate their average grade and print it. 
+
+Add a 1D list to add students' names and display who scored: 
+
+ a) highest average grade
+
+b) lowest average grade
+
+c) Who scored highest in each subject? '''
+
+# Store student names in a 1D list
+student_names = ["Alice", "Bob", "Charlie"]
+
+# Store grades in a 2D list (3 students x 4 subjects)
+# Each row represents one student's grades for all subjects
+# Subjects: Math, Science, English, History
+grades = [
+    [85, 92, 78, 88],  # Alice's grades
+    [90, 85, 95, 82],  # Bob's grades
+    [88, 90, 85, 94]   # Charlie's grades
+]
+
+print("=== STUDENT GRADES SYSTEM ===\n")
+
+# Display all grades in a formatted table
+print("Student Grades (Math, Science, English, History):")
+print("-" * 50)
+for i in range(len(student_names)):
+    print(f"{student_names[i]}: {grades[i]}")
+
+print("\n" + "="*50)
+
+# Part 1: Calculate and display each student's average grade
+print("\n1. STUDENT AVERAGES:")
+print("-" * 20)
+
+averages = []  # Store averages for later use
+
+for i in range(len(student_names)):
+    # Calculate average for current student
+    total = sum(grades[i])  # Add all grades for this student
+    average = total / len(grades[i])  # Divide by number of subjects
+    averages.append(average)  # Store the average
+    
+    print(f"{student_names[i]}: {average:.2f}")
+
+# Part 2a: Find student with highest average
+print("\n2a. HIGHEST AVERAGE:")
+print("-" * 20)
+
+highest_avg = max(averages)  # Find the highest average
+highest_index = averages.index(highest_avg)  # Find position of highest average
+print(f"{student_names[highest_index]} has the highest average: {highest_avg:.2f}")
+
+# Part 2b: Find student with lowest average
+print("\n2b. LOWEST AVERAGE:")
+print("-" * 20)
+
+lowest_avg = min(averages)  # Find the lowest average
+lowest_index = averages.index(lowest_avg)  # Find position of lowest average
+print(f"{student_names[lowest_index]} has the lowest average: {lowest_avg:.2f}")
+
+# Part 2c: Find who scored highest in each subject
+print("\n2c. HIGHEST SCORE IN EACH SUBJECT:")
+print("-" * 35)
+
+subjects = ["Math", "Science", "English", "History"]
+
+for subject_index in range(4):  # Loop through each subject (0 to 3)
+    # Get all students' grades for this subject
+    subject_grades = []
+    for student_index in range(len(student_names)):
+        subject_grades.append(grades[student_index][subject_index])
+    
+    # Find the highest grade and who got it
+    highest_grade = max(subject_grades)
+    best_student_index = subject_grades.index(highest_grade)
+    
+    print(f"{subjects[subject_index]}: {student_names[best_student_index]} ({highest_grade})")
+
+print("\n" + "="*50)
+print("Program completed successfully!")
